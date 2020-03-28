@@ -36,6 +36,6 @@ public class MotivationApp extends Application {
 	
 	@Override
 	public void stop() {
-		// TODO: Save everything when app stops
+		taskManager.saveListsToFile();
 	}
 }

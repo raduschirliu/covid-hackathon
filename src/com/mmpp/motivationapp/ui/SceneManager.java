@@ -8,11 +8,11 @@ import javafx.stage.Stage;
 
 public class SceneManager {
 	private Stage stage;
-	private Map<String, Scene> scenes;
+	private Map<String, SceneView> views;
 	
 	public SceneManager(Stage stage) {
 		this.stage = stage;
-		scenes = new HashMap<String, Scene>();
+		views = new HashMap<String, SceneView>();
 	}
 	
 	public void changeScene(String name) {
@@ -20,15 +20,19 @@ public class SceneManager {
 	}
 	
 	public void registerScene(SceneView view) {
-		if (scenes.containsKey(view.getSceneName())) {
+		if (views.containsKey(view.getSceneName())) {
 			System.err.println("Error, cannot have duplicate scene name: " + view.getSceneName());
 			return;
 		}
 		
-		scenes.put(view.getSceneName(), view.getScene());
+		views.put(view.getSceneName(), view);
 	}
 	
 	public Scene getScene(String name) {
-		return scenes.get(name);
+		return views.get(name).getScene();
+	}
+	
+	public SceneView getView(String name) {
+		return views.get(name);
 	}
 }

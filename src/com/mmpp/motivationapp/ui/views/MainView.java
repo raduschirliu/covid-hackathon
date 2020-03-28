@@ -1,5 +1,6 @@
 package com.mmpp.motivationapp.ui.views;
 
+import com.mmpp.motivationapp.backend.Task;
 import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
@@ -9,8 +10,12 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -23,6 +28,53 @@ public class MainView extends SceneView {
 		super("Main", sceneManager);
 		this.taskManager = taskManager;
 		this.motivationController = motivationController;
+	}
+	
+	public Pane createTask(Task task, boolean darkBg) {
+		HBox root = new HBox();
+		root.setPadding(new Insets(5));
+		
+		if (darkBg) {
+			root.setStyle("-fx-background-color: rgb(232, 232, 232);");
+		}
+		
+		CheckBox check = new CheckBox();
+		check.setSelected(task.getIsComplete());
+		check.setOnAction((ActionEvent e) -> {
+			task.setComplete(!task.getIsComplete());
+		});
+		root.getChildren().add(check);
+		
+		Label priorityLbl = new Label("(" + task.getPriority() + ")");
+		priorityLbl.setPadding(new Insets(0, 0, 0, 5));
+		priorityLbl.setPrefWidth(40);
+		root.getChildren().add(priorityLbl);
+		
+		Label nameLbl = new Label(task.getName());
+		nameLbl.setPrefWidth(250);
+		nameLbl.setPadding(new Insets(0, 20, 0, 20));
+		root.getChildren().add(nameLbl);
+		
+		Button editBtn = new Button("Edit");
+		editBtn.setPrefHeight(check.getHeight());
+		editBtn.setOnAction((ActionEvent e) -> {
+			// TODO: edit screen
+			System.out.println("Edit: " + task.getName());
+			((TaskView)sceneManager.getView("Task")).setTask(task);
+			sceneManager.changeScene("Task");
+		});
+		root.getChildren().add(editBtn);
+		
+		Button deleteBtn = new Button("X");
+		deleteBtn.setPrefHeight(check.getHeight());
+		deleteBtn.setOnAction((ActionEvent e) -> {
+			// TODO: delete screen
+			System.out.println("Delete: " + task.getName());
+		});
+		root.getChildren().add(deleteBtn);
+		HBox.setMargin(deleteBtn, new Insets(0, 0, 0, 5));
+		
+		return root;
 	}
 
 	@Override
@@ -38,11 +90,11 @@ public class MainView extends SceneView {
 		
 		VBox taskList = new VBox();
 		
-		for (int i = 0; i < 50; i++) {
-			Button btn = new Button("Test task");
-			btn.setPrefWidth(300);
+		for (int i = 1; i < 50; i++) {
+			Task testTask = new Task("wow" + i, i % 11);
+			Pane taskPane = createTask(testTask, i % 2 == 0);
 			
-			taskList.getChildren().add(btn);
+			taskList.getChildren().add(taskPane);
 		}
 		
 		scrollPane.setContent(taskList);
