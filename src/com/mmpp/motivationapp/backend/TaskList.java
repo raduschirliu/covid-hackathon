@@ -31,11 +31,6 @@ public class TaskList implements BackendConstants {
 			}
 		}
 		return index;
-		/*
-		 * int insertionFactor = MAX_PRIORTIY - myTask.getPriority(); double fraction =
-		 * (double) insertionFactor/(MAX_PRIORTIY); int index =
-		 * (int)(fraction*(getMyTasks().size()));
-		 */
 	}
 
 	public ArrayList<Task> getMyTasks() {
