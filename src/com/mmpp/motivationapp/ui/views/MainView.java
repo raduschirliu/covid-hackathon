@@ -58,7 +58,6 @@ public class MainView extends SceneView {
 		Button editBtn = new Button("Edit");
 		editBtn.setPrefHeight(check.getHeight());
 		editBtn.setOnAction((ActionEvent e) -> {
-			// TODO: edit screen
 			System.out.println("Edit: " + task.getName());
 			((TaskView)sceneManager.getView("Task")).setTask(task);
 			sceneManager.changeScene("Task");
@@ -90,12 +89,20 @@ public class MainView extends SceneView {
 		
 		VBox taskList = new VBox();
 		
-		for (int i = 1; i < 50; i++) {
-			Task testTask = new Task("wow" + i, i % 11);
-			Pane taskPane = createTask(testTask, i % 2 == 0);
+		int i = 0;
+		for (Task task : taskManager.getTodaysTasks()) {
+			Pane taskPane = createTask(task, i % 2 == 0);
 			
 			taskList.getChildren().add(taskPane);
+			i++;
 		}
+		
+//		for (int i = 1; i < 50; i++) {
+//			Task testTask = new Task("wow" + i, i % 11);
+//			Pane taskPane = createTask(testTask, i % 2 == 0);
+//			
+//			taskList.getChildren().add(taskPane);
+//		}
 		
 		scrollPane.setContent(taskList);
 		root.setCenter(centerPane);
@@ -103,15 +110,18 @@ public class MainView extends SceneView {
 		
 		// Right pane
 		VBox rightPane = new VBox();
-		Text motivateText = new Text("");
+		Label motivateLbl = new Label("");
+		motivateLbl.setPrefWidth(100);
+		motivateLbl.setMaxWidth(100);
+		motivateLbl.setWrapText(true);
 		
 		Button motivateBtn = new Button("Motivate");
 		motivateBtn.setOnAction((ActionEvent event) -> {
-			motivateText.setText(motivationController.getRandomMessage());
+			motivateLbl.setText(motivationController.getRandomMessage());
 		});
 		
-		rightPane.getChildren().add(motivateText);
 		rightPane.getChildren().add(motivateBtn);
+		rightPane.getChildren().add(motivateLbl);
 		
 		root.setRight(rightPane);
 		BorderPane.setMargin(rightPane, new Insets(20, 20, 0, 0));
@@ -123,7 +133,8 @@ public class MainView extends SceneView {
 		newTaskBtn.setPrefWidth(640);
 		newTaskBtn.setMinHeight(40);
 		newTaskBtn.setOnAction((ActionEvent event) -> {
-			sceneManager.changeScene("NewTask");
+			((TaskView)sceneManager.getView("Task")).setTask(null);
+			sceneManager.changeScene("Task");
 		});
 		bottomPane.getChildren().add(newTaskBtn);
 		

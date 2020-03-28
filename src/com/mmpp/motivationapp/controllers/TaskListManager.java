@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import com.mmpp.motivationapp.backend.BackendConstants;
 import com.mmpp.motivationapp.backend.Task;
@@ -38,6 +39,10 @@ public class TaskListManager implements BackendConstants {
 	private void setupNewDay() {
 		yesterdaysList = fileMan.importListFromFile(TODAY_FILE_NAME);
 		todaysList = new TaskList();
+	}
+	
+	public ArrayList<Task> getTodaysTasks() {
+		return todaysList.getMyTasks();
 	}
 
 	public void addTaskToToday(Task myTask) {

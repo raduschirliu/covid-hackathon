@@ -4,7 +4,7 @@ import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
 import com.mmpp.motivationapp.ui.views.MainView;
-import com.mmpp.motivationapp.ui.views.NewTaskView;
+import com.mmpp.motivationapp.ui.views.TaskView;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -25,7 +25,7 @@ public class MotivationApp extends Application {
 		
 		sceneManager = new SceneManager(stage);
 		sceneManager.registerScene(new MainView(sceneManager, taskManager, motivationController));
-		sceneManager.registerScene(new NewTaskView(sceneManager, taskManager));
+		sceneManager.registerScene(new TaskView(sceneManager, taskManager));
 		
 		sceneManager.changeScene("Main");
 		
