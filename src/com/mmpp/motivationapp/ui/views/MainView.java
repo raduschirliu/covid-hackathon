@@ -1,5 +1,7 @@
 package com.mmpp.motivationapp.ui.views;
 
+import com.mmpp.motivationapp.controllers.MotivationController;
+import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
 import com.mmpp.motivationapp.ui.SceneView;
 
@@ -14,8 +16,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class MainView extends SceneView {
-	public MainView(SceneManager sceneManager) {
-		super(sceneManager);
+	private TaskListManager taskManager;
+	private MotivationController motivationController;
+	
+	public MainView(SceneManager sceneManager, TaskListManager taskManager, MotivationController motivationController) {
+		super("Main", sceneManager);
+		this.taskManager = taskManager;
+		this.motivationController = motivationController;
 	}
 
 	@Override
@@ -44,7 +51,16 @@ public class MainView extends SceneView {
 		
 		// Right pane
 		VBox rightPane = new VBox();
-		rightPane.getChildren().add(new Button("something else"));
+		Text motivateText = new Text("");
+		
+		Button motivateBtn = new Button("Motivate");
+		motivateBtn.setOnAction((ActionEvent event) -> {
+			motivateText.setText(motivationController.getRandomMessage());
+		});
+		
+		rightPane.getChildren().add(motivateText);
+		rightPane.getChildren().add(motivateBtn);
+		
 		root.setRight(rightPane);
 		BorderPane.setMargin(rightPane, new Insets(20, 20, 0, 0));
 		

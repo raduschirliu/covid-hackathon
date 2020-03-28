@@ -1,5 +1,8 @@
 package com.mmpp.motivationapp.ui.views;
 
+import com.mmpp.motivationapp.backend.BackendConstants;
+import com.mmpp.motivationapp.backend.Task;
+import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
 import com.mmpp.motivationapp.ui.SceneView;
 
@@ -17,9 +20,11 @@ import javafx.scene.layout.VBox;
 public class NewTaskView extends SceneView {
 	private String name;
 	private int priority;
+	private TaskListManager taskManager;
 	
-	public NewTaskView(SceneManager sceneManager) {
-		super(sceneManager);
+	public NewTaskView(SceneManager sceneManager, TaskListManager taskManager) {
+		super("NewTask", sceneManager);
+		this.taskManager = taskManager;
 	}
 
 	@Override
@@ -39,7 +44,7 @@ public class NewTaskView extends SceneView {
 		priorityLabel.setPadding(new Insets(20, 0, 0, 0));
 		centerPane.getChildren().add(priorityLabel);
 		
-		Slider prioritySlider = new Slider(1, 5, 1);
+		Slider prioritySlider = new Slider(1, BackendConstants.MAX_PRIORTIY, 1);
 		prioritySlider.setMinorTickCount(0);
 		prioritySlider.setMajorTickUnit(1);
 		prioritySlider.setSnapToTicks(true);
@@ -78,7 +83,8 @@ public class NewTaskView extends SceneView {
 	
 	// TODO: make it do things
 	private void createTask() {
-		System.out.println(name + " " + priority);
+		Task task = new Task(name, priority);
+		System.out.println("Created new task: " + task);
 		sceneManager.changeScene("Main");
 	}
 }

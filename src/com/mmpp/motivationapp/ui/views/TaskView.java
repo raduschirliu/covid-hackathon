@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 
 public class TaskView extends SceneView {
 	public TaskView(SceneManager sceneManager) {
-		super(sceneManager);
+		super("Task", sceneManager);
 	}
 
 	@Override

@@ -1,4 +1,6 @@
-package com.mmpp.motivationapp.backend;
+package com.mmpp.motivationapp.controllers;
+
+import com.mmpp.motivationapp.backend.TaskList;
 
 //make a save function
 public class TaskListManager {

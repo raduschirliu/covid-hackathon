@@ -19,8 +19,13 @@ public class SceneManager {
 		stage.setScene(getScene(name));
 	}
 	
-	public void registerScene(String name, SceneView view) {
-		scenes.put(name, view.getScene());
+	public void registerScene(SceneView view) {
+		if (scenes.containsKey(view.getSceneName())) {
+			System.err.println("Error, cannot have duplicate scene name: " + view.getSceneName());
+			return;
+		}
+		
+		scenes.put(view.getSceneName(), view.getScene());
 	}
 	
 	public Scene getScene(String name) {

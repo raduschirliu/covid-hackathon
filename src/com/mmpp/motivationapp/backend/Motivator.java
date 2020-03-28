@@ -22,10 +22,10 @@ public class Motivator {
 		MessageBox.add(newMessage);
 	}
 	
-	public void displayRandomMessage() {
+	public Message getRandomMessage() {
 		if(MessageBox.size() == 0) {
 			System.out.println("No messages to display");
-			return;
+			return null;
 		}
 		
 		//Get a random index within the total messages
@@ -33,7 +33,7 @@ public class Motivator {
 		int max = MessageBox.size();
 		int index = r.nextInt(max);
 		
-		System.out.println(MessageBox.get(index));
+		return MessageBox.get(index);
 	}
 	
 	public void importMessagesFromFile(String filename) {
@@ -67,7 +67,7 @@ public class Motivator {
 	public static void main(String [] args) {
 		Motivator m = new Motivator();
 		m.importMessagesFromFile("MessageBank.txt");
-		m.displayRandomMessage();
+		System.out.println(m.getRandomMessage());
 	}
 	
 }
