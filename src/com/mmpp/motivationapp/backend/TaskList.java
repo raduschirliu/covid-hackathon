@@ -19,10 +19,19 @@ public class TaskList implements BackendConstants{
 	}
 
 	private int getInsertIndex(Task myTask) {
+		if(myTasks.size() == 0) {
+			return 0;
+		}
+		int index = 0;
+		while(myTask.getPriority() < myTasks.get(index).getPriority()) {
+			index++;
+		}
+		return index;
+		/*
 		int insertionFactor = MAX_PRIORTIY - myTask.getPriority();
 		double fraction = (double) insertionFactor/(MAX_PRIORTIY);
 		int index = (int)(fraction*(getMyTasks().size()));	
-		return index;
+		*/
 	}
 
 	public ArrayList<Task> getMyTasks() {
@@ -53,10 +62,16 @@ public class TaskList implements BackendConstants{
 		Task myTask2 = new Task("Test Task 2", 10);
 		Task myTask3 = new Task("Test Task 3", 0);
 		Task myTask4 = new Task("Test Task 4", 5);
+		Task myTask5 = new Task("Test Task 5", 3);
+		Task myTask6 = new Task("Test Task 6", 2);
+		Task myTask7 = new Task("Test Task 7", 7);
 		test.addTask(myTask1);
 		test.addTask(myTask2);
 		test.addTask(myTask3);
 		test.addTask(myTask4);
+		test.addTask(myTask5);
+		test.addTask(myTask6);
+		test.addTask(myTask7);
 		test.printList();
 	}
 }

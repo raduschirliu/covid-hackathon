@@ -14,6 +14,10 @@ public class Task implements BackendConstants{
 		priority = p;
 		complete = false;
 	}
+	
+	public void makeComplete() {
+		setComplete(true);
+	}
 
 	public String getName() {
 		return name;

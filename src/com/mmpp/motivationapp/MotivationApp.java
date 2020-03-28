@@ -1,6 +1,6 @@
 package com.mmpp.motivationapp;
 
-import com.mmpp.motivationapp.backend.TaskList;
+import com.mmpp.motivationapp.backend.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
 import com.mmpp.motivationapp.ui.views.MainView;
 import com.mmpp.motivationapp.ui.views.NewTaskView;
@@ -10,9 +10,7 @@ import javafx.stage.Stage;
 
 public class MotivationApp extends Application {
 	SceneManager sceneManager;
-	TaskList yesterdaysList;
-	TaskList todaysList;
-	TaskList tommorrowsList;
+	TaskListManager tasks;
 	
 	public static void main(String[] args) {
 		launch(args);
