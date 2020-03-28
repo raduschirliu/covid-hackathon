@@ -25,6 +25,9 @@ public class TaskList implements BackendConstants{
 		int index = 0;
 		while(myTask.getPriority() < myTasks.get(index).getPriority()) {
 			index++;
+			if(index >= myTasks.size()) {
+				break;
+			}
 		}
 		return index;
 		/*
