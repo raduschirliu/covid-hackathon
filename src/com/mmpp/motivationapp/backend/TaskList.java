@@ -1,9 +1,10 @@
 package com.mmpp.motivationapp.backend;
 
 import java.util.ArrayList;
+import com.mmpp.motivationapp.controllers.TaskListManager;
 import java.time.LocalDate;
 
-public class TaskList implements BackendConstants{
+public class TaskList implements BackendConstants {
 
 	private ArrayList<Task> myTasks;
 	private LocalDate date;
@@ -19,22 +20,22 @@ public class TaskList implements BackendConstants{
 	}
 
 	private int getInsertIndex(Task myTask) {
-		if(myTasks.size() == 0) {
+		if (myTasks.size() == 0) {
 			return 0;
 		}
 		int index = 0;
-		while(myTask.getPriority() < myTasks.get(index).getPriority()) {
+		while (myTask.getPriority() < myTasks.get(index).getPriority()) {
 			index++;
-			if(index >= myTasks.size()) {
+			if (index >= myTasks.size()) {
 				break;
 			}
 		}
 		return index;
 		/*
-		int insertionFactor = MAX_PRIORTIY - myTask.getPriority();
-		double fraction = (double) insertionFactor/(MAX_PRIORTIY);
-		int index = (int)(fraction*(getMyTasks().size()));	
-		*/
+		 * int insertionFactor = MAX_PRIORTIY - myTask.getPriority(); double fraction =
+		 * (double) insertionFactor/(MAX_PRIORTIY); int index =
+		 * (int)(fraction*(getMyTasks().size()));
+		 */
 	}
 
 	public ArrayList<Task> getMyTasks() {
@@ -52,15 +53,15 @@ public class TaskList implements BackendConstants{
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	
+
 	private void printList() {
-		for(int i = 0; i < myTasks.size(); i++) {
+		for (int i = 0; i < myTasks.size(); i++) {
 			System.out.println(myTasks.get(i).toString());
 		}
 	}
 
 	public static void main(String[] args) {
-		TaskList test = new TaskList();
+		TaskListManager taskMan = new TaskListManager();
 		Task myTask1 = new Task("Test Task 1", 10);
 		Task myTask2 = new Task("Test Task 2", 10);
 		Task myTask3 = new Task("Test Task 3", 0);
@@ -68,13 +69,13 @@ public class TaskList implements BackendConstants{
 		Task myTask5 = new Task("Test Task 5", 3);
 		Task myTask6 = new Task("Test Task 6", 2);
 		Task myTask7 = new Task("Test Task 7", 7);
-		test.addTask(myTask1);
-		test.addTask(myTask2);
-		test.addTask(myTask3);
-		test.addTask(myTask4);
-		test.addTask(myTask5);
-		test.addTask(myTask6);
-		test.addTask(myTask7);
-		test.printList();
+		taskMan.addTaskToToday(myTask1);
+		taskMan.addTaskToToday(myTask2);
+		taskMan.addTaskToToday(myTask3);
+		taskMan.addTaskToToday(myTask4);
+		taskMan.addTaskToToday(myTask5);
+		taskMan.addTaskToToday(myTask6);
+		taskMan.addTaskToToday(myTask7);
+		taskMan.saveListsToFile();
 	}
 }
