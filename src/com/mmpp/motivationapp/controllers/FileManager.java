@@ -16,12 +16,12 @@ public class FileManager {
 	public void saveList(TaskList list, String filename) {
 		try {
 			FileWriter writer = new FileWriter(filename, false);
-			if(list == null) {
+			if (list == null) {
 				writer.close();
 				return;
 			}
 			writer.write(list.getDate().toString() + "\n");
-			for(int i = 0; i < list.getMyTasks().size(); i++) {
+			for (int i = 0; i < list.getMyTasks().size(); i++) {
 				writer.write(list.getMyTasks().get(i).toString() + "\n");
 			}
 			writer.close();
@@ -37,13 +37,14 @@ public class FileManager {
 		try {
 			br = new BufferedReader(new FileReader(file));
 			String date = br.readLine();
-			if(date == null) {
+			if (date == null) {
+				br.close();
 				return null;
 			}
 			newList.setDate(LocalDate.parse(date));
 			String task = br.readLine();
-			while(task != null) {
-				String [] vars = task.split(";");
+			while (task != null) {
+				String[] vars = task.split(";");
 				String name = vars[0];
 				int pri = Integer.parseInt(vars[1]);
 				boolean boo = Boolean.parseBoolean(vars[2]);
@@ -51,6 +52,7 @@ public class FileManager {
 				newList.addTask(newTask);
 				task = br.readLine();
 			}
+			br.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (IOException e2) {
