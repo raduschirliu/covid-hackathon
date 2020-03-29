@@ -60,11 +60,12 @@ public class Achiever {
 	public void importAchievementsFromFile(String filename) {
 		File file = new File(filename);
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(filename));
+			BufferedReader in = new BufferedReader(new FileReader(file));
 			while(in.ready()) {
 				String s = in.readLine();
 				addAchievementToAll(s);
 			}
+			in.close();
 		}
 		catch(FileNotFoundException e) {
 			System.err.println("Could not find the file with the specified filename");
