@@ -45,6 +45,18 @@ public class Motivator {
 		MessageBox.add(newMessage);
 	}
 	
+	public void resetYesterday() {
+		setCompletedYesterday(0);
+	}
+	
+	public int getCompletedYesterday() {
+		return completedYesterday;
+	}
+
+	public void setCompletedYesterday(int completedYesterday) {
+		this.completedYesterday = completedYesterday;
+	}
+
 	/**
 	 * Picks a random message from the message box
 	 * @return a randomly selected message
