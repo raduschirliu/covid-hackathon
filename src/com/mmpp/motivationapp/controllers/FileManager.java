@@ -6,14 +6,39 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import com.mmpp.motivationapp.backend.BackendConstants;
 import com.mmpp.motivationapp.backend.Task;
 import com.mmpp.motivationapp.backend.TaskList;
 
 public class FileManager {
 
+	public FileManager() {
+		try {
+			File dataDir = new File(BackendConstants.DATA_DIR);
+			if (!dataDir.exists() || !dataDir.isDirectory()) {
+				dataDir.mkdir();
+			}
+			
+			File yesterdayFile = new File(BackendConstants.YESTERDAY_FILE_NAME);
+			if (!yesterdayFile.exists()) {
+				yesterdayFile.createNewFile();
+			}
+			
+			File todayFile = new File(BackendConstants.TODAY_FILE_NAME);
+			if (!todayFile.exists()) {
+				todayFile.createNewFile();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void saveList(TaskList list, String filename) {
 		try {
 			FileWriter writer = new FileWriter(filename, false);

@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class SceneManager {
 	private Stage stage;
+	private String currentScene;
 	private Map<String, SceneView> views;
 	
 	public SceneManager(Stage stage) {
@@ -16,7 +17,19 @@ public class SceneManager {
 	}
 	
 	public void changeScene(String name) {
-		stage.setScene(getScene(name));
+		Scene scene = getScene(name);
+		
+		if (scene == null) {
+			System.err.println("Error, scene does not exist: " + name);
+			return;
+		}
+		
+		stage.setScene(scene);
+		currentScene = name;
+	}
+	
+	public void reloadScene() {
+		changeScene(currentScene);
 	}
 	
 	public void registerScene(SceneView view) {

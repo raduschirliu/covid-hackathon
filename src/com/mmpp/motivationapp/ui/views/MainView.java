@@ -1,5 +1,7 @@
 package com.mmpp.motivationapp.ui.views;
 
+import java.util.ArrayList;
+
 import com.mmpp.motivationapp.backend.Task;
 import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
@@ -69,6 +71,8 @@ public class MainView extends SceneView implements Style{
 		deleteBtn.setOnAction((ActionEvent e) -> {
 			// TODO: delete screen
 			System.out.println("Delete: " + task.getName());
+			taskManager.removeTodaysTask(task);
+			sceneManager.reloadScene();
 		});
 		root.getChildren().add(deleteBtn);
 		HBox.setMargin(deleteBtn, new Insets(0, 0, 0, 5));
@@ -88,21 +92,20 @@ public class MainView extends SceneView implements Style{
 		centerPane.getChildren().add(scrollPane);
 		
 		VBox taskList = new VBox();
+		ArrayList<Task> tasks = taskManager.getTodaysTasks();
 		
-		int i = 0;
-		for (Task task : taskManager.getTodaysTasks()) {
-			Pane taskPane = createTask(task, i % 2 == 0);
+		if (tasks.size() != 0) {
+			for (int i = 0; i < tasks.size(); i++) {
+				Pane taskPane = createTask(tasks.get(i), i % 2 == 1);
+				
+				taskList.getChildren().add(taskPane);
+			}
 			
-			taskList.getChildren().add(taskPane);
-			i++;
+		} else {
+			Label emptyLbl = new Label("No tasks!");
+			emptyLbl.setStyle("-fx-font-size: 20;");
+			taskList.getChildren().add(emptyLbl);
 		}
-		
-//		for (int i = 1; i < 50; i++) {
-//			Task testTask = new Task("wow" + i, i % 11);
-//			Pane taskPane = createTask(testTask, i % 2 == 0);
-//			
-//			taskList.getChildren().add(taskPane);
-//		}
 		
 		scrollPane.setContent(taskList);
 		root.setCenter(centerPane);

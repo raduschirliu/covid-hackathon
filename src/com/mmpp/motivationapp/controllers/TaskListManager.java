@@ -54,6 +54,10 @@ public class TaskListManager implements BackendConstants {
 			continueDay();
 		}
 	}
+	
+	public void removeTodaysTask(Task task) {
+		todaysList.removeTask(task);
+	}
 
 	private void continueDay() {
 		yesterdaysList = fileMan.importListFromFile(YESTERDAY_FILE_NAME);

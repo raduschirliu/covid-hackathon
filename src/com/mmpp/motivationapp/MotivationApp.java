@@ -35,6 +35,9 @@ public class MotivationApp extends Application {
 		
 		stage.setTitle("COVID Hackathon Motivator");
 		stage.setResizable(false);
+		stage.setWidth(640);
+		stage.setHeight(480);
+		stage.centerOnScreen();
 		stage.show();
 	}
 	
