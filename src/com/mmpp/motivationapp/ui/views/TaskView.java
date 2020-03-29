@@ -106,7 +106,6 @@ public class TaskView extends SceneView {
 		return scene;
 	}
 	
-	// TODO: Make it create new task
 	private void createTask() {
 		Task newTask = new Task(name, priority);
 		taskManager.addTaskToToday(newTask);
@@ -115,12 +114,12 @@ public class TaskView extends SceneView {
 		sceneManager.changeScene("Main");
 	}
 	
-	// TODO: make it save
 	private void saveTask() {
 		task.setName(name);
 		task.setPriority(priority);
 		System.out.println("Saved task: " + task);
-		taskManager.getTodaysList().sortTasks(); //Reorder the tasks now that we have possibly changed the priority
+		//Reorder the tasks now that we have possibly changed the priority
+		taskManager.getTodaysList().sortTasks();
 		sceneManager.changeScene("Main");
 	}
 }

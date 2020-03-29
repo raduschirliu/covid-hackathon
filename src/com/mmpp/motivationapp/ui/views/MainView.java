@@ -23,6 +23,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class MainView extends SceneView {
 	private TaskListManager taskManager;
@@ -109,10 +110,11 @@ public class MainView extends SceneView {
 		
 		// Center pane
 		VBox centerPane = new VBox();
+		centerPane.setPrefWidth(400);
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.prefWidthProperty().bind(centerPane.prefWidthProperty());
 		
-		centerPane.getChildren().add(new Text("Tasks:"));
+//		centerPane.getChildren().add(new Text("Tasks:"));
 		centerPane.getChildren().add(scrollPane);
 		
 		VBox taskList = new VBox();
@@ -128,7 +130,8 @@ public class MainView extends SceneView {
 			
 		} else {
 			Label emptyLbl = new Label("No tasks!");
-			emptyLbl.setStyle("-fx-font-size: 20;");
+			emptyLbl.getStyleClass().add("title");
+			emptyLbl.setTextAlignment(TextAlignment.CENTER);
 			taskList.getChildren().add(emptyLbl);
 		}
 		
