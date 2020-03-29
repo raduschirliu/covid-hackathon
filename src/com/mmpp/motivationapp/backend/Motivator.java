@@ -67,6 +67,7 @@ public class Motivator {
 				String s = in.readLine();
 				addMessage(s);
 			}
+			in.close();
 		} catch (FileNotFoundException e) {
 			System.err.println("Could not find the file with the specified filename");
 			e.printStackTrace();
@@ -74,12 +75,11 @@ public class Motivator {
 			System.err.println("I/O error");
 			e.printStackTrace();
 		}
-		
 	}
 	
 	/**
 	 * Gets the message box ArrayList
-	 * @return
+	 * @return the message box in ArrayList
 	 */
 	public ArrayList<Message> getMessageBox() {
 		return MessageBox;
