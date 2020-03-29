@@ -7,30 +7,20 @@ package com.mmpp.motivationapp.backend;
  */
 public class HistoryMessage{
 
+	/**
+	 * This is the first part of the motivational message
+	 */
 	private String before;
 	
 	/**
-	 * The last part of the motivational saying
+	 * The last part of the motivational message
 	 */
 	private String after;
+
 	
-	/**
-	 * The task that was completed
-	 */
-	private Task task;
-	
-	public HistoryMessage(String before, String after, Task t) {
+	public HistoryMessage(String before, String after) {
 		this.before = before;
 		this.after = after;
-		this.setTask(t);
-	}
-
-	public Task getTask() {
-		return task;
-	}
-
-	public void setTask(Task task) {
-		this.task = task;
 	}
 	
 	public String getBefore() {
@@ -49,12 +39,10 @@ public class HistoryMessage{
 		this.after = after;
 	}
 	
-	@Override
-	public String toString() {
-		String s = "";
-		s += before;
-		s += task.getName();
-		s += after;
+	public String generateMessage(Task t) {
+		String s = this.before;
+		s += t.getName();
+		s += this.after;
 		return s;
 	}
 

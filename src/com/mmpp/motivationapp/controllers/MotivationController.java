@@ -11,6 +11,6 @@ public class MotivationController {
 	}
 	
 	public String getRandomMessage() {
-		return motivator.getRandomMessage().getContent();
+		return motivator.motivate();
 	}
 }
