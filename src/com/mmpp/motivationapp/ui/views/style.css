@@ -1,14 +1,40 @@
+* {
+	-color-white: "#fcfcfe";
+	-color-blue: "#7babed";
+	-color-gray: "#e8e8e8";
+	-color-yellow: "#f9d987";
+	-color-yellow-dark: "#faeac3";
+}
+
 .root {
-	-fx-accent: "#7babed";
+	-fx-accent: -color-blue;
+	-fx-font-family: "Ubuntu", 'sans-serif';
+	-fx-font-size: 14px;
 }
 
 .body {
-	-fx-background-color: "#fcfcfe";
+	-fx-background-color: -color-white;
 }
 
+CheckBox .box {
+    -fx-background-color: white;
+    -fx-border-radius: 4px;
+    -fx-border-color: -color-gray;
+}
+
+CheckBox:selected .mark {
+    -fx-background-color: white;
+}
+
+CheckBox:selected .box {
+    -fx-background-color: -color-blue;
+}
+
+
 Button {
-	-fx-background-color: "#7babed";
-	-fx-text-fill: white;
+	-fx-background-color: -color-blue;
+	-fx-text-fill: -color-white;
+	-fx-border-radius: 4px;
 }
 
 Button:hover {
@@ -16,25 +42,34 @@ Button:hover {
 }
 
 Button.outline {
-	
+	-fx-background-color: -color-white;
+	-fx-border-color: -color-blue;
+	-fx-text-fill: -color-blue;
+	-fx-border-radius: 4px;
+}
+
+Button.outline:hover {
+	-fx-background-color: -color-gray;
+	-fx-opacity: 0.9;
 }
 
 ScrollPane {
-	-fx-background-color: "#e8e8e8";
+	-fx-background-color: -color-gray;
+	-fx-border-radius: 4px;
 }
 
 .task {
-	-fx-background-color: "#fcfcfe";
+	-fx-background-color: -color-white;
 }
 
 .task.dark {
-	-fx-background-color: "#e8e8e8";
+	-fx-background-color: -color-gray;
 }
 
 .task.completed {
-	-fx-background-color: "#f9d987";
+	-fx-background-color: -color-yellow;
 }
 
 .task.dark.completed {
-	-fx-background-color: "#faeac3";
+	-fx-background-color: -color-yellow-dark;
 }
