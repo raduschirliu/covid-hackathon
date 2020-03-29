@@ -24,8 +24,8 @@ public class MotivationApp extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		taskManager = new TaskListManager();
 		motivationController = new MotivationController();
+		taskManager = new TaskListManager(motivationController);
 		
 		sceneManager = new SceneManager(stage);
 		sceneManager.registerScene(new MainView(sceneManager, taskManager, motivationController));

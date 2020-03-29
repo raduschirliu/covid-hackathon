@@ -17,9 +17,10 @@ import com.mmpp.motivationapp.backend.TaskList;
 public class TaskListManager implements BackendConstants {
 
 	// All TaskLists that front end should have access to:
-	FileManager fileMan;
-	TaskList yesterdaysList;
-	TaskList todaysList;
+	private FileManager fileMan;
+	private TaskList yesterdaysList;
+	private TaskList todaysList;
+	private MotivationController motivationController;
 
 	public FileManager getFileMan() {
 		return fileMan;
@@ -46,7 +47,8 @@ public class TaskListManager implements BackendConstants {
 	}
 
 	// decide where to get the lists from upon start up
-	public TaskListManager() {
+	public TaskListManager(MotivationController mc) {
+		this.motivationController = mc;
 		fileMan = new FileManager();
 		if (isNewDay()) {
 			setupNewDay();
@@ -67,6 +69,7 @@ public class TaskListManager implements BackendConstants {
 	private void setupNewDay() {
 		yesterdaysList = fileMan.importListFromFile(TODAY_FILE_NAME);
 		todaysList = new TaskList();
+		motivationController.getMotivator().resetYesterday(yesterdaysList);
 	}
 	
 	public ArrayList<Task> getTodaysTasks() {
