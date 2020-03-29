@@ -8,7 +8,11 @@ import com.mmpp.motivationapp.ui.views.TaskView;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+/**
+ * The main front-end of the COVID Hackathon Task List and Motivation Application
+ * @author Radu Schirliu
+ *
+ */
 public class MotivationApp extends Application {
 	SceneManager sceneManager;
 	TaskListManager taskManager;
