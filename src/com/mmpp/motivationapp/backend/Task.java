@@ -1,5 +1,4 @@
 package com.mmpp.motivationapp.backend;
-
 /**
  * This class makes up the main body of the task objects used throughout the program 
  * @author Alexa Calkhoven
@@ -116,7 +115,7 @@ public class Task implements BackendConstants, Comparable<Task>{
 	/**
 	 * 
 	 * @param other the Task to compare to
-	 * @return <0 if this priority is higher than other, >0 if this priority is less than other, and 0 if the priorities are equal
+	 * @return <0 if this priority is higher than other, >0 if this priority is less than other, and 0 if the priorities are equal or if other is null
 	 */
 	public int compareTo(Task other) {
 		if(other == null) {

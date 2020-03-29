@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * This class handles the user motivator that is displayed to the right of the task window
+ * This class handles the user Motivator that is displayed to the right of the task window
  * @author Tyler Yip
  *
  */
@@ -18,14 +18,22 @@ public class Motivator {
 	/**
 	 * This array list stores all the messages generated from the text file
 	 */
-	public ArrayList<Message> MessageBox;
+	private ArrayList<Message> MessageBox;
+	
+	/**
+	 * This array list stores all of the tasks from yesterday, both completed or not
+	 */
+	private TaskList yesterdaysTasks;
+
+	private int completedYesterday;
 
 	/**
-	 * Constructor for class motivator
+	 * Constructor for class Motivator
 	 */
 	public Motivator() {
 		MessageBox = new ArrayList<Message>();
-		
+		completedYesterday = 0;
+		yesterdaysTasks = null;
 	}
 	
 	/**
@@ -46,7 +54,6 @@ public class Motivator {
 			System.out.println("No messages to display");
 			return null;
 		}
-		
 		//Get a random index within the total messages
 		Random r = new Random();
 		int max = MessageBox.size();
@@ -91,6 +98,22 @@ public class Motivator {
 	 */
 	public void setMessageBox(ArrayList<Message> messageBox) {
 		MessageBox = messageBox;
+	}
+	
+	/**
+	 * Gets YesterdaysTasks
+	 * @return YesterdaysTasks
+	 */
+	public TaskList getYesterdaysTasks() {
+		return yesterdaysTasks;
+	}
+
+	/**
+	 * Sets yesterdaysTasks 
+	 * @param yesterdaysTasks the new TaskList
+	 */
+	public void setYesterdaysTasks(TaskList yesterdaysTasks) {
+		this.yesterdaysTasks = yesterdaysTasks;
 	}
 	
 	/**
