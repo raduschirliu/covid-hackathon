@@ -2,12 +2,13 @@ package com.mmpp.motivationapp.backend;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 /**
  * This class manages multiple tasks and keeps track of a collection of them that are related to a date
  * @author Alexa Calkhoven
  *
  */
-public class TaskList implements BackendConstants {
+public class TaskList implements BackendConstants{
 
 	/**
 	 * An ArrayList that stores all the Tasks in this TaskList
@@ -86,4 +87,9 @@ public class TaskList implements BackendConstants {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+	
+	public void sortTasks() {
+		Collections.sort(myTasks);
+	}
+
 }

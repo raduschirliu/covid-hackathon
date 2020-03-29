@@ -21,6 +21,30 @@ public class TaskListManager implements BackendConstants {
 	TaskList yesterdaysList;
 	TaskList todaysList;
 
+	public FileManager getFileMan() {
+		return fileMan;
+	}
+
+	public void setFileMan(FileManager fileMan) {
+		this.fileMan = fileMan;
+	}
+
+	public TaskList getYesterdaysList() {
+		return yesterdaysList;
+	}
+
+	public void setYesterdaysList(TaskList yesterdaysList) {
+		this.yesterdaysList = yesterdaysList;
+	}
+
+	public TaskList getTodaysList() {
+		return todaysList;
+	}
+
+	public void setTodaysList(TaskList todaysList) {
+		this.todaysList = todaysList;
+	}
+
 	// decide where to get the lists from upon start up
 	public TaskListManager() {
 		fileMan = new FileManager();
