@@ -1,6 +1,7 @@
 * {
 	-color-white: "#fcfcfe";
 	-color-blue: "#7babed";
+	-color-blue-gray: "#ced6e3";
 	-color-gray: "#e8e8e8";
 	-color-yellow: "#f9d987";
 	-color-yellow-dark: "#faeac3";
@@ -16,6 +17,33 @@
 
 .body {
 	-fx-background-color: -color-white;
+}
+
+TextField {
+	-fx-background-color: -color-white;
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: -color-gray;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0.0 , 0 , 1.5);
+}
+
+TextField:focused {
+	-fx-border-color: -color-blue;
+}
+
+Slider .track {
+	-fx-background-color: -color-gray;
+	-fx-background-color: rgba(220, 220, 220, 0.7);
+}
+
+.thumb {
+	-fx-border-color: -color-gray;
+	-fx-border-radius: 1px;
+	-fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.25) , 5, 0.0 , 0 , 1);
+}
+
+.thumb:hover {
+	-fx-opacity: 0.9;
+	-fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.4) , 5, 0.0 , 0 , 1);
 }
 
 CheckBox .box {
