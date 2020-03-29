@@ -2,17 +2,39 @@
 	-fx-accent: "#7babed";
 }
 
-/*
-.button {
+.body {
+	-fx-background-color: "#fcfcfe";
+}
+
+Button {
 	-fx-background-color: "#7babed";
-	-fx-cursor: hover;
+	-fx-text-fill: white;
 }
 
-.button .label {
-	-fx-color: white;
-}
-
-.button:hover {
+Button:hover {
 	-fx-opacity: 0.9;
 }
-*/
+
+Button.outline {
+	
+}
+
+ScrollPane {
+	-fx-background-color: "#e8e8e8";
+}
+
+.task {
+	-fx-background-color: "#fcfcfe";
+}
+
+.task.dark {
+	-fx-background-color: "#e8e8e8";
+}
+
+.task.completed {
+	-fx-background-color: "#f9d987";
+}
+
+.task.dark.completed {
+	-fx-background-color: "#faeac3";
+}

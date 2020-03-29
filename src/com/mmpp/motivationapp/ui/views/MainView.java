@@ -7,6 +7,7 @@ import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
 import com.mmpp.motivationapp.ui.SceneView;
+import com.sun.javafx.css.Stylesheet;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -22,7 +24,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class MainView extends SceneView implements Style{
+public class MainView extends SceneView {
 	private TaskListManager taskManager;
 	private MotivationController motivationController;
 	
@@ -33,29 +35,58 @@ public class MainView extends SceneView implements Style{
 	}
 	
 	public Pane createTask(Task task, boolean darkBg) {
-		HBox root = new HBox();
-		root.setPadding(new Insets(5));
+		AnchorPane root = new AnchorPane();
+		root.getStyleClass().add("task");
+		root.setMinSize(300, 25);
+		root.setPadding(new Insets(0, 5, 0, 5));
+		
+		if (task.getIsComplete()) {
+			root.getStyleClass().add("completed");
+		}
 		
 		if (darkBg) {
-			root.setStyle("-fx-background-color:" + COLOR_GRAY + ";");
+			root.getStyleClass().add("dark");
 		}
 		
 		CheckBox check = new CheckBox();
 		check.setSelected(task.getIsComplete());
+		check.setMinHeight(25.0);
 		check.setOnAction((ActionEvent e) -> {
 			task.setComplete(!task.getIsComplete());
+			
+			if (task.getIsComplete()) {
+				root.getStyleClass().add("completed");
+			} else {
+				root.getStyleClass().remove("completed");
+			}
 		});
 		root.getChildren().add(check);
+		AnchorPane.setLeftAnchor(check, 0.0);
 		
 		Label priorityLbl = new Label("(" + task.getPriority() + ")");
 		priorityLbl.setPadding(new Insets(0, 0, 0, 5));
 		priorityLbl.setPrefWidth(40);
+		priorityLbl.setMinHeight(25);
 		root.getChildren().add(priorityLbl);
+		AnchorPane.setLeftAnchor(priorityLbl, 30.0);
 		
 		Label nameLbl = new Label(task.getName());
 		nameLbl.setPrefWidth(250);
+		nameLbl.setMinHeight(25);
 		nameLbl.setPadding(new Insets(0, 20, 0, 20));
 		root.getChildren().add(nameLbl);
+		AnchorPane.setLeftAnchor(nameLbl, 50.0);
+		
+		Button deleteBtn = new Button("X");
+		deleteBtn.setPrefSize(30, check.getHeight());
+		deleteBtn.getStyleClass().add("button");
+		deleteBtn.setOnAction((ActionEvent e) -> {
+			System.out.println("Delete: " + task.getName());
+			taskManager.removeTodaysTask(task);
+			sceneManager.reloadScene();
+		});
+		root.getChildren().add(deleteBtn);
+		AnchorPane.setRightAnchor(deleteBtn, 0.0);
 		
 		Button editBtn = new Button("Edit");
 		editBtn.setPrefHeight(check.getHeight());
@@ -65,17 +96,7 @@ public class MainView extends SceneView implements Style{
 			sceneManager.changeScene("Task");
 		});
 		root.getChildren().add(editBtn);
-		
-		Button deleteBtn = new Button("X");
-		deleteBtn.setPrefHeight(check.getHeight());
-		deleteBtn.setOnAction((ActionEvent e) -> {
-			// TODO: delete screen
-			System.out.println("Delete: " + task.getName());
-			taskManager.removeTodaysTask(task);
-			sceneManager.reloadScene();
-		});
-		root.getChildren().add(deleteBtn);
-		HBox.setMargin(deleteBtn, new Insets(0, 0, 0, 5));
+		AnchorPane.setRightAnchor(editBtn, editBtn.getWidth() + 40);
 		
 		return root;
 	}
@@ -84,7 +105,6 @@ public class MainView extends SceneView implements Style{
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
 		root.getStyleClass().add("body");
-		root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		
 		// Center pane
 		VBox centerPane = new VBox();
@@ -146,6 +166,8 @@ public class MainView extends SceneView implements Style{
 		root.setBottom(bottomPane);
 		BorderPane.setMargin(bottomPane, new Insets(0, 20, 20, 20));
 		
-		return new Scene(root, 640, 480);
+		Scene scene = new Scene(root, 640, 480);
+		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		return scene;
 	}
 }

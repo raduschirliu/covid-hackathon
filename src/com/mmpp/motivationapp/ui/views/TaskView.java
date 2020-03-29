@@ -44,7 +44,6 @@ public class TaskView extends SceneView {
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
 		root.getStyleClass().add("body");
-		root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		
 		// Center pane
 		VBox centerPane = new VBox();
@@ -101,7 +100,9 @@ public class TaskView extends SceneView {
 		root.setBottom(bottomPane);
 		BorderPane.setMargin(bottomPane, new Insets(0, 20, 20, 20));
 		
-		return new Scene(root, 640, 480);
+		Scene scene = new Scene(root, 640, 480);
+		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		return scene;
 	}
 	
 	// TODO: Make it create new task
