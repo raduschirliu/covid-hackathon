@@ -7,7 +7,6 @@ import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
 import com.mmpp.motivationapp.ui.SceneView;
-import com.sun.javafx.css.Stylesheet;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -18,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;

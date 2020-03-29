@@ -23,6 +23,11 @@ public class Achievement {
 	 * The number of tasks that the user must complete to earn this achievement
 	 */
 	private int cost;
+	
+	/**
+	 * The status of whether or not a user has earned this achievement
+	 */
+	private boolean hasEarned;
 
 	/**
 	 * The constructor for class achievement
@@ -34,6 +39,7 @@ public class Achievement {
 		this.name = name;
 		this.cost = cost;
 		this.setDescription(description);
+		this.setHasEarned(false);
 	}
 
 	/**
@@ -88,6 +94,14 @@ public class Achievement {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public boolean isHasEarned() {
+		return hasEarned;
+	}
+
+	public void setHasEarned(boolean hasEarned) {
+		this.hasEarned = hasEarned;
 	}
 
 }
