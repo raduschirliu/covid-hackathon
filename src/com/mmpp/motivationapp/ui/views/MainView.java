@@ -79,7 +79,7 @@ public class MainView extends SceneView {
 		
 		Button deleteBtn = new Button("X");
 		deleteBtn.setPrefSize(30, check.getHeight());
-		deleteBtn.getStyleClass().add("button");
+		deleteBtn.getStyleClass().add("outline");
 		deleteBtn.setOnAction((ActionEvent e) -> {
 			System.out.println("Delete: " + task.getName());
 			taskManager.removeTodaysTask(task);
@@ -90,6 +90,7 @@ public class MainView extends SceneView {
 		
 		Button editBtn = new Button("Edit");
 		editBtn.setPrefHeight(check.getHeight());
+		editBtn.getStyleClass().add("outline");
 		editBtn.setOnAction((ActionEvent e) -> {
 			System.out.println("Edit: " + task.getName());
 			((TaskView)sceneManager.getView("Task")).setTask(task);
@@ -109,17 +110,19 @@ public class MainView extends SceneView {
 		// Center pane
 		VBox centerPane = new VBox();
 		ScrollPane scrollPane = new ScrollPane();
+		scrollPane.prefWidthProperty().bind(centerPane.prefWidthProperty());
 		
 		centerPane.getChildren().add(new Text("Tasks:"));
 		centerPane.getChildren().add(scrollPane);
 		
 		VBox taskList = new VBox();
+		taskList.prefWidthProperty().bind(scrollPane.prefWidthProperty());
 		ArrayList<Task> tasks = taskManager.getTodaysTasks();
 		
 		if (tasks.size() != 0) {
 			for (int i = 0; i < tasks.size(); i++) {
 				Pane taskPane = createTask(tasks.get(i), i % 2 == 1);
-				
+				taskPane.prefWidthProperty().bind(taskList.prefWidthProperty());
 				taskList.getChildren().add(taskPane);
 			}
 			
@@ -167,6 +170,7 @@ public class MainView extends SceneView {
 		BorderPane.setMargin(bottomPane, new Insets(0, 20, 20, 20));
 		
 		Scene scene = new Scene(root, 640, 480);
+		scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		return scene;
 	}

@@ -101,6 +101,7 @@ public class TaskView extends SceneView {
 		BorderPane.setMargin(bottomPane, new Insets(0, 20, 20, 20));
 		
 		Scene scene = new Scene(root, 640, 480);
+		scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		return scene;
 	}
