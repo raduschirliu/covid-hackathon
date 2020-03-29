@@ -80,7 +80,7 @@ public class Motivator {
 	public void resetYesterday(TaskList newList) {
 		setCompletedYesterday(0);
 		yesterdaysTasks = new TaskList();
-		if(newList.getMyTasks() == null) {
+		if(newList == null) {
 			return;
 		}
 		for(Task t: newList.getMyTasks()) {
