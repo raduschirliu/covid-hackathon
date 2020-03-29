@@ -6,9 +6,8 @@ package com.mmpp.motivationapp.backend;
  *
  */
 public interface BackendConstants {
-
-	static final int MAX_PRIORTIY = 10;
-	static final String YESTERDAY_FILE_NAME = "data/yes_list.txt";
-	static final String TODAY_FILE_NAME = "data/tod_list.txt";
-	//static final Color PINK_COLOR = 
+	public static final int MAX_PRIORTIY = 10;
+	public static final String DATA_DIR = "data";
+	public static final String YESTERDAY_FILE_NAME = "data/yes_list.txt";
+	public static final String TODAY_FILE_NAME = "data/tod_list.txt";
 }

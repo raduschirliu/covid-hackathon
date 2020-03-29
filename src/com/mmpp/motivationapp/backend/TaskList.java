@@ -37,6 +37,10 @@ public class TaskList implements BackendConstants{
 		int insertAt = getInsertIndex(newTask);
 		myTasks.add(insertAt, newTask);
 	}
+	
+	public void removeTask(Task task) {
+		myTasks.remove(task);
+	}
 
 	/**
 	 * Gets the insertion index of a new Task to be added to the TaskList based on its priority 
