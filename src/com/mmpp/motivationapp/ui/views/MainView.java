@@ -20,7 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class MainView extends SceneView {
+public class MainView extends SceneView implements Style{
 	private TaskListManager taskManager;
 	private MotivationController motivationController;
 	
@@ -35,7 +35,7 @@ public class MainView extends SceneView {
 		root.setPadding(new Insets(5));
 		
 		if (darkBg) {
-			root.setStyle("-fx-background-color: rgb(232, 232, 232);");
+			root.setStyle("-fx-background-color:" + COLOR_GRAY + ";");
 		}
 		
 		CheckBox check = new CheckBox();

@@ -1,4 +1,5 @@
 package com.mmpp.motivationapp.backend;
+
 /**
  * This class makes up the main body of the task objects used throughout the program 
  * @author Alexa Calkhoven
