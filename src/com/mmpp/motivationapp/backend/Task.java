@@ -4,7 +4,7 @@ package com.mmpp.motivationapp.backend;
  * @author Alexa Calkhoven
  *
  */
-public class Task implements BackendConstants, Comparable{
+public class Task implements BackendConstants, Comparable<Task>{
 
 	/**
 	 * The name for the task to complete, will be displayed to the user on the window
@@ -117,11 +117,11 @@ public class Task implements BackendConstants, Comparable{
 	 * @param other the Task to compare to
 	 * @return <0 if this priority is higher than other, >0 if this priority is less than other, and 0 if the priorities are equal
 	 */
-	public int compareTo(Object other) {
+	public int compareTo(Task other) {
 		if(other == null) {
 			return 0;
 		}
-		return ((Task)other).getPriority() - this.getPriority();
+		return other.getPriority() - this.getPriority();
 	}
 
 }
