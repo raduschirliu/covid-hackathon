@@ -83,6 +83,8 @@ public class MainView extends SceneView implements Style{
 	@Override
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
+		root.getStyleClass().add("body");
+		root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		
 		// Center pane
 		VBox centerPane = new VBox();

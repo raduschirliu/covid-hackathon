@@ -1,0 +1,18 @@
+.root {
+	-fx-accent: "#7babed";
+}
+
+/*
+.button {
+	-fx-background-color: "#7babed";
+	-fx-cursor: hover;
+}
+
+.button .label {
+	-fx-color: white;
+}
+
+.button:hover {
+	-fx-opacity: 0.9;
+}
+*/
