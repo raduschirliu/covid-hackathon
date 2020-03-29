@@ -3,6 +3,7 @@ package com.mmpp.motivationapp.backend;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+
 /**
  * This class manages multiple tasks and keeps track of a collection of them that are related to a date
  * @author Alexa Calkhoven
