@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import com.mmpp.motivationapp.backend.Task;
 import com.mmpp.motivationapp.backend.TaskList;
@@ -57,6 +58,9 @@ public class FileManager {
 			e1.printStackTrace();
 		} catch (IOException e2) {
 			e2.printStackTrace();
+		} catch (DateTimeParseException e3) {
+			//if there isn't a date at the top of the file, return a null list
+			return null;
 		}
 		return newList;
 	}
