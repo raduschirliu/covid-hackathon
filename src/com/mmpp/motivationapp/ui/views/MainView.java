@@ -20,7 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class MainView extends SceneView {
@@ -48,6 +47,7 @@ public class MainView extends SceneView {
 		}
 		
 		CheckBox check = new CheckBox();
+		if (darkBg) check.getStyleClass().add("white-bg");
 		check.setSelected(task.getIsComplete());
 		check.setMinHeight(25.0);
 		check.setOnAction((ActionEvent e) -> {
@@ -61,20 +61,6 @@ public class MainView extends SceneView {
 		});
 		root.getChildren().add(check);
 		AnchorPane.setLeftAnchor(check, 0.0);
-		
-		Label priorityLbl = new Label("(" + task.getPriority() + ")");
-		priorityLbl.setPadding(new Insets(0, 0, 0, 5));
-		priorityLbl.setPrefWidth(40);
-		priorityLbl.setMinHeight(25);
-		root.getChildren().add(priorityLbl);
-		AnchorPane.setLeftAnchor(priorityLbl, 30.0);
-		
-		Label nameLbl = new Label(task.getName());
-		nameLbl.setPrefWidth(250);
-		nameLbl.setMinHeight(25);
-		nameLbl.setPadding(new Insets(0, 20, 0, 20));
-		root.getChildren().add(nameLbl);
-		AnchorPane.setLeftAnchor(nameLbl, 50.0);
 		
 		Button deleteBtn = new Button("X");
 		deleteBtn.setPrefSize(30, check.getHeight());
@@ -98,6 +84,15 @@ public class MainView extends SceneView {
 		root.getChildren().add(editBtn);
 		AnchorPane.setRightAnchor(editBtn, editBtn.getWidth() + 40);
 		
+		Label nameLbl = new Label(task.getName());
+		nameLbl.setPrefWidth(250);
+		nameLbl.setMinHeight(25);
+		nameLbl.setPadding(new Insets(0, 20, 0, 20));
+		nameLbl.setPadding(new Insets(0));
+		root.getChildren().add(nameLbl);
+		AnchorPane.setLeftAnchor(nameLbl, 30.0);
+		AnchorPane.setRightAnchor(nameLbl, editBtn.getWidth() + 90);
+		
 		return root;
 	}
 
@@ -107,33 +102,26 @@ public class MainView extends SceneView {
 		root.getStyleClass().add("body");
 		
 		// Center pane
-		VBox centerPane = new VBox();
-		centerPane.setPrefWidth(400);
-		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.prefWidthProperty().bind(centerPane.prefWidthProperty());
-		
-//		centerPane.getChildren().add(new Text("Tasks:"));
-		centerPane.getChildren().add(scrollPane);
+		ScrollPane centerPane = new ScrollPane();
+		centerPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		
 		VBox taskList = new VBox();
-		taskList.prefWidthProperty().bind(scrollPane.prefWidthProperty());
+		taskList.prefWidthProperty().bind(centerPane.widthProperty());
 		ArrayList<Task> tasks = taskManager.getTodaysTasks();
 		
 		if (tasks.size() != 0) {
 			for (int i = 0; i < tasks.size(); i++) {
 				Pane taskPane = createTask(tasks.get(i), i % 2 == 1);
-				taskPane.prefWidthProperty().bind(taskList.prefWidthProperty());
 				taskList.getChildren().add(taskPane);
 			}
-			
 		} else {
-			Label emptyLbl = new Label("No tasks!");
+			Label emptyLbl = new Label("No tasks");
 			emptyLbl.getStyleClass().add("title");
 			emptyLbl.setTextAlignment(TextAlignment.CENTER);
 			taskList.getChildren().add(emptyLbl);
 		}
 		
-		scrollPane.setContent(taskList);
+		centerPane.setContent(taskList);
 		root.setCenter(centerPane);
 		BorderPane.setMargin(centerPane, new Insets(20));
 		
@@ -141,7 +129,6 @@ public class MainView extends SceneView {
 		VBox rightPane = new VBox();
 		Label motivateLbl = new Label("");
 		motivateLbl.setPrefWidth(100);
-		motivateLbl.setMaxWidth(100);
 		motivateLbl.setWrapText(true);
 		
 		Button motivateBtn = new Button("Motivate");
