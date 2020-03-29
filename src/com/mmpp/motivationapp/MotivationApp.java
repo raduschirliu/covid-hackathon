@@ -30,13 +30,11 @@ public class MotivationApp extends Application {
 		sceneManager = new SceneManager(stage);
 		sceneManager.registerScene(new MainView(sceneManager, taskManager, motivationController));
 		sceneManager.registerScene(new TaskView(sceneManager, taskManager));
-		
+
 		sceneManager.changeScene("Main");
 		
 		stage.setTitle("COVID Hackathon Motivator");
 		stage.setResizable(false);
-		stage.setWidth(640);
-		stage.setHeight(480);
 		stage.centerOnScreen();
 		stage.show();
 	}
