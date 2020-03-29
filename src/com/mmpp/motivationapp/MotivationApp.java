@@ -1,5 +1,6 @@
 package com.mmpp.motivationapp;
 
+import com.mmpp.motivationapp.controllers.AchieverController;
 import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
@@ -17,6 +18,7 @@ public class MotivationApp extends Application {
 	SceneManager sceneManager;
 	TaskListManager taskManager;
 	MotivationController motivationController;
+	AchieverController achieverController;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -26,6 +28,7 @@ public class MotivationApp extends Application {
 	public void start(Stage stage) throws Exception {
 		motivationController = new MotivationController();
 		taskManager = new TaskListManager(motivationController);
+		achieverController = new AchieverController();
 		
 		sceneManager = new SceneManager(stage);
 		sceneManager.registerScene(new MainView(sceneManager, taskManager, motivationController));
@@ -42,5 +45,6 @@ public class MotivationApp extends Application {
 	@Override
 	public void stop() {
 		taskManager.saveListsToFile();
+		achieverController.saveAchievementsToFile();
 	}
 }

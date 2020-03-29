@@ -103,5 +103,14 @@ public class Achievement {
 	public void setHasEarned(boolean hasEarned) {
 		this.hasEarned = hasEarned;
 	}
+	
+	@Override
+	public String toString() {
+		String s = "";
+		s += name;
+		s += "\n" + cost;
+		s += "\n" + description;
+		return s;
+	}
 
 }

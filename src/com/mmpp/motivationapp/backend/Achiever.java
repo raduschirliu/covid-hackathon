@@ -57,13 +57,36 @@ public class Achiever {
 	 * Imports achievements into the allAchievements from a file
 	 * @param filename the name of the file
 	 */
-	public void importAchievementsFromFile(String filename) {
+	public void importAchievementsFromFile(String filename, ArrayList<Achievement> a) {
 		File file = new File(filename);
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(file));
 			while(in.ready()) {
 				String s = in.readLine();
-				addAchievementToAll(s);
+				addAchievement(s, a);
+			}
+			in.close();
+		}
+		catch(FileNotFoundException e) {
+			System.err.println("Could not find the file with the specified filename");
+			e.printStackTrace();
+		}
+		catch(IOException e) {
+			System.err.println("I/O error");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Loads achievements from a data file into the achiever's list of my achievements
+	 * @param f
+	 */
+	public void loadMyAchievements(File f) {
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(f));
+			while(in.ready()) {
+				String s = in.readLine();
+				addAchievement(s, getMyAchievements());
 			}
 			in.close();
 		}
@@ -79,12 +102,16 @@ public class Achiever {
 	
 	/**
 	 * Adds an achievement to the AllAchievements list
-	 * @param s
+	 * @param s the string containing a line from the achievement bank text file
 	 */
-	public void addAchievementToAll(String s) {
+	public void addAchievement(String s, ArrayList<Achievement> a) {
+		if(s.isEmpty()) {
+			return;
+		}
 		String [] split = s.split(";");
-		Achievement a = new Achievement(split[0], Integer.parseInt(split[1]), split[2]);
-		allAchievements.add(a);
+		int cost = Integer.parseInt(split[1]);
+		Achievement achievement = new Achievement(split[0], cost, split[2]);
+		a.add(achievement);
 	}
 	
 	public ArrayList<Achievement> getAllAchievements() {
