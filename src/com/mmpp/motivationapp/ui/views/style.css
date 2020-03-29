@@ -1,9 +1,12 @@
 * {
 	-color-white: "#fcfcfe";
 	-color-blue: "#7babed";
+	-color-blue-gray: "#ced6e3";
 	-color-gray: "#e8e8e8";
 	-color-yellow: "#f9d987";
 	-color-yellow-dark: "#faeac3";
+	-color-green: "#63ffa1";
+	-color-green-dark: "#00e676";
 }
 
 .root {
@@ -14,33 +17,80 @@
 
 .body {
 	-fx-background-color: -color-white;
-	-fx-max-width: 640px;
-	-fx-max-height: 480px;
+}
+
+TextField {
+	-fx-background-color: -color-white;
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: -color-gray;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0.0 , 0 , 1.5);
+}
+
+TextField:focused {
+	-fx-border-color: -color-blue;
+}
+
+Slider .track {
+	-fx-background-color: -color-gray;
+	-fx-background-color: rgba(220, 220, 220, 0.7);
+}
+
+.thumb {
+	-fx-border-color: -color-gray;
+	-fx-border-radius: 1px;
+	-fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.25) , 5, 0.0 , 0 , 1);
+}
+
+.thumb:hover {
+	-fx-opacity: 0.9;
+	-fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.4) , 5, 0.0 , 0 , 1);
 }
 
 CheckBox .box {
-    -fx-background-color: white;
+    -fx-background-color: -color-gray;
     -fx-border-radius: 4px;
     -fx-border-color: -color-gray;
 }
 
+CheckBox.white-bg .box {
+    -fx-background-color: -color-white;
+    -fx-border-radius: 4px;
+    -fx-border-color: -color-gray;
+}
+
+CheckBox .box:hover {
+	-fx-opacity: 0.85;
+}
+
+CheckBox:hover {
+	-fx-opacity: 0.9;
+}
+
 CheckBox:selected .mark {
-    -fx-background-color: white;
+    -fx-background-color: -color-white;
+}
+
+CheckBox.white-bg:selected .mark {
+    -fx-background-color: -color-white;
 }
 
 CheckBox:selected .box {
     -fx-background-color: -color-blue;
 }
 
+CheckBox.white-bg:selected .box {
+    -fx-background-color: -color-blue;
+}
 
 Button {
 	-fx-background-color: -color-blue;
 	-fx-text-fill: -color-white;
 	-fx-border-radius: 4px;
+	-fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.25) , 5, 0.0 , 0 , 1);
 }
 
 Button:hover {
-	-fx-opacity: 0.9;
+	-fx-opacity: 0.8;
 }
 
 Button.outline {
@@ -48,11 +98,11 @@ Button.outline {
 	-fx-border-color: -color-blue;
 	-fx-text-fill: -color-blue;
 	-fx-border-radius: 4px;
+	-fx-effect: none;
 }
 
 Button.outline:hover {
-	-fx-background-color: -color-gray;
-	-fx-opacity: 0.9;
+	-fx-background-color: rgba(123, 171, 237, 0.25);
 }
 
 ScrollPane {
@@ -65,15 +115,15 @@ ScrollPane {
 }
 
 .task.dark {
-	-fx-background-color: -color-gray;
+	-fx-background-color: linear-gradient(from 0% 0% to 95% 100%, -color-gray, -color-white);
 }
 
 .task.completed {
-	-fx-background-color: -color-yellow;
+	-fx-background-color: linear-gradient(from 0% 0% to 95% 100%, -color-yellow, -color-white);
 }
 
 .task.dark.completed {
-	-fx-background-color: -color-yellow-dark;
+	-fx-background-color: linear-gradient(from 0% 0% to 95% 100%, -color-yellow-dark, -color-white);
 }
 
 .title {
