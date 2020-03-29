@@ -1,6 +1,6 @@
 2020-03-28
 Find out Jordan's birthday;10;false
-Purchase a Norm Drinking Bird for Radu for Christmas;9;false
+Purchase a Norm Drinking Bird for Radu for Christmas;10;false
 Polish Titus' head;6;false
 Take out Moshi's garbage;4;false
-Convince Alexa to publish TikToks;2;false
+Convince Alexa to publish TikToks;1;false
