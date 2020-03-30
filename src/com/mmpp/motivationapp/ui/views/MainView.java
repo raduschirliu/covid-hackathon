@@ -162,7 +162,7 @@ public class MainView extends SceneView {
 				taskList.getChildren().add(taskPane);
 			}
 		} else {
-			Label emptyLbl = new Label("No tasks");
+			Label emptyLbl = new Label("Create a Task to get started!");
 			emptyLbl.getStyleClass().add("title");
 			emptyLbl.setTextAlignment(TextAlignment.CENTER);
 			taskList.getChildren().add(emptyLbl);
