@@ -54,7 +54,7 @@ public class AchieverController implements BackendConstants{
 		try {
 			FileWriter writer = new FileWriter(MY_ACHIEVEMENTS, false);
 			//First thing we must do is save the lifetime completed tasks count
-			writer.write(achiever.getLifetimeCompleted() + "\n");
+			writer.write(achiever.getLifetimeCompleted());
 			
 			//Now we can write all of the user's achievements
 			for(int i = 0; i<achiever.getMyAchievements().size(); i++) {

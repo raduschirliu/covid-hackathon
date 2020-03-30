@@ -3,6 +3,7 @@ package com.mmpp.motivationapp.ui.views;
 import java.util.ArrayList;
 
 import com.mmpp.motivationapp.backend.Task;
+import com.mmpp.motivationapp.controllers.AchieverController;
 import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
@@ -27,11 +28,13 @@ import javafx.scene.text.TextAlignment;
 public class MainView extends SceneView {
 	private TaskListManager taskManager;
 	private MotivationController motivationController;
+	private AchieverController achieverController;
 	
-	public MainView(SceneManager sceneManager, TaskListManager taskManager, MotivationController motivationController) {
+	public MainView(SceneManager sceneManager, TaskListManager taskManager, MotivationController motivationController, AchieverController achieverController) {
 		super("Main", sceneManager);
 		this.taskManager = taskManager;
 		this.motivationController = motivationController;
+		this.setAchieverController(achieverController);
 	}
 	
 	public Pane createTask(Task task, boolean darkBg) {
@@ -57,7 +60,9 @@ public class MainView extends SceneView {
 			
 			if (task.getIsComplete()) {
 				root.getStyleClass().add("completed");
+				getAchieverController().getAchiever().setLifetimeCompleted(getAchieverController().getAchiever().getLifetimeCompleted() + 1);
 			} else {
+				getAchieverController().getAchiever().setLifetimeCompleted(getAchieverController().getAchiever().getLifetimeCompleted() - 1);
 				root.getStyleClass().remove("completed");
 			}
 		});
@@ -178,5 +183,13 @@ public class MainView extends SceneView {
 		scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 		return scene;
+	}
+
+	public AchieverController getAchieverController() {
+		return achieverController;
+	}
+
+	public void setAchieverController(AchieverController achieverController) {
+		this.achieverController = achieverController;
 	}
 }

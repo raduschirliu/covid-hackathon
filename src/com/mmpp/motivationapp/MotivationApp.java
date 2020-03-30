@@ -33,7 +33,7 @@ public class MotivationApp extends Application {
 		achieverController = new AchieverController();
 		
 		sceneManager = new SceneManager(stage);
-		sceneManager.registerScene(new MainView(sceneManager, taskManager, motivationController));
+		sceneManager.registerScene(new MainView(sceneManager, taskManager, motivationController, achieverController));
 		sceneManager.registerScene(new TaskView(sceneManager, taskManager));
 		sceneManager.registerScene(new AchievementView(sceneManager, achieverController));
 
