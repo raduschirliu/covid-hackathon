@@ -62,9 +62,6 @@ public class AchievementView extends SceneView {
 		BorderPane root = new BorderPane();
 		root.getStyleClass().add("body");
 		
-		// debug
-		achieverController.getAchiever().setLifetimeCompleted(1250);
-		
 		Label titleLbl = new Label("Achievements");
 		titleLbl.setMinWidth(640);
 		titleLbl.setMinHeight(40);
@@ -81,7 +78,7 @@ public class AchievementView extends SceneView {
 		achievementPane.setAlignment(Pos.CENTER);
 		achievementPane.setSpacing(10);
 		
-		for (Achievement achievement : achieverController.getAchiever().getAllAchievements()) {
+		for (Achievement achievement : achieverController.getAchiever().getMyAchievements()) {
 			Pane pane = createAchievement(achievement);
 			achievementPane.getChildren().add(pane);
 		}

@@ -20,7 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -197,6 +198,7 @@ public class MainView extends SceneView {
 		newTaskBtn.setPrefWidth(600);
 		newTaskBtn.setMinHeight(40);
 		newTaskBtn.setOnAction((ActionEvent event) -> {
+			motivateText.set(motivationController.getRandomMessage());
 			((TaskView)sceneManager.getView("Task")).setTask(null);
 			sceneManager.changeScene("Task");
 		});
@@ -206,6 +208,13 @@ public class MainView extends SceneView {
 		BorderPane.setMargin(bottomPane, new Insets(0, 20, 20, 20));
 		
 		Scene scene = new Scene(root, 640, 480);
+		scene.setOnKeyPressed((KeyEvent event) -> {
+			if (event.getCode() == KeyCode.BACK_QUOTE) {
+				achieverController.getAchiever().setLifetimeCompleted(1250);
+				achieverController.update();
+				System.out.println("Unlocked all achievements");
+			}
+		});
 		scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 		return scene;
