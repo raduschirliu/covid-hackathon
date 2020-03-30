@@ -20,6 +20,7 @@
 }
 
 TextField {
+	-fx-cursor: hand;
 	-fx-background-color: -color-white;
 	-fx-border-width: 0px 0px 2px 0px;
 	-fx-border-color: -color-gray;
@@ -36,6 +37,7 @@ Slider .track {
 }
 
 .thumb {
+	-fx-cursor: hand;
 	-fx-border-color: -color-gray;
 	-fx-border-radius: 1px;
 	-fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.25) , 5, 0.0 , 0 , 1);
@@ -47,6 +49,7 @@ Slider .track {
 }
 
 CheckBox .box {
+	-fx-cursor: hand;
     -fx-background-color: -color-gray;
     -fx-border-radius: 4px;
     -fx-border-color: -color-gray;
@@ -83,6 +86,7 @@ CheckBox.white-bg:selected .box {
 }
 
 Button {
+	-fx-cursor: hand;
 	-fx-background-color: -color-blue;
 	-fx-text-fill: -color-white;
 	-fx-border-radius: 4px;
@@ -91,6 +95,18 @@ Button {
 
 Button:hover {
 	-fx-opacity: 0.8;
+}
+
+Button.small {
+	-fx-background-color: -color-white;
+	-fx-font-size: 12px;
+	-fx-border-radius: 4px;
+	-fx-effect: none;
+	-fx-text-fill: black;
+}
+
+Button.small:hover {
+	-fx-background-color: rgba(220, 220, 220, 0.5);
 }
 
 Button.outline {
@@ -108,6 +124,21 @@ Button.outline:hover {
 ScrollPane {
 	-fx-background-color: -color-gray;
 	-fx-border-radius: 4px;
+}
+
+.achievement {
+	-fx-background-color: -color-white;
+	-fx-border-color: -color-gray;
+	-fx-border-radius: 4px;
+}
+
+.achievement-name {
+	-fx-border-width: 0 0 2px 0;
+}
+
+.achievement-image {
+	-fx-border-radius: 50%;
+	-fx-border-width: 2px;
 }
 
 .task {

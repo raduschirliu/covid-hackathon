@@ -26,3 +26,5 @@ A lot of skills were learned in the process of creating MotivateMate. For a coup
 ## What's next for Motivator App
 In the future, we would love to perfect MotivateMate. Right now, MotivateMate is an application that can only be run on a computer, but we would love to see it work on mobile too. Additionally, we would like to add features to allow students to connect with their friends, adding another angle for motivation.
 
+## Credits
+Using icons made by Freepik from www.flaticon.com

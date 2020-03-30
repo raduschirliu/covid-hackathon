@@ -9,6 +9,8 @@ import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
 import com.mmpp.motivationapp.ui.SceneView;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -18,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -29,12 +32,19 @@ public class MainView extends SceneView {
 	private TaskListManager taskManager;
 	private MotivationController motivationController;
 	private AchieverController achieverController;
+	private StringProperty motivateText;
 	
-	public MainView(SceneManager sceneManager, TaskListManager taskManager, MotivationController motivationController, AchieverController achieverController) {
+	public MainView(
+		SceneManager sceneManager,
+		TaskListManager taskManager,
+		MotivationController motivationController,
+		AchieverController achieverController
+	) {
 		super("Main", sceneManager);
 		this.taskManager = taskManager;
 		this.motivationController = motivationController;
 		this.setAchieverController(achieverController);
+		motivateText = new SimpleStringProperty("");
 	}
 	
 	public Pane createTask(Task task, boolean darkBg) {
@@ -57,6 +67,7 @@ public class MainView extends SceneView {
 		check.setMinHeight(25.0);
 		check.setOnAction((ActionEvent e) -> {
 			task.setComplete(!task.getIsComplete());
+			motivateText.set(motivationController.getRandomMessage());
 			
 			if (task.getIsComplete()) {
 				root.getStyleClass().add("completed");
@@ -108,12 +119,33 @@ public class MainView extends SceneView {
 		BorderPane root = new BorderPane();
 		root.getStyleClass().add("body");
 		
-		//Logo insertion
+		// Top pane
+		AnchorPane topPane = new AnchorPane();
+		
 		ImageView logoV = new ImageView();
 		Image logo = new Image(getClass().getResourceAsStream("/logo.png"), 350, 131, true, true);
-		BorderPane.setMargin(logoV, (new Insets(25, 0, 0, 20)));
 		logoV.setImage(logo);
-		root.setTop(logoV);
+		logoV.setCache(true);
+		logoV.setSmooth(true);
+		topPane.getChildren().add(logoV);
+		AnchorPane.setLeftAnchor(logoV, 25.0);
+		
+		Image trophyImage = new Image(getClass().getResourceAsStream("/trophy.png"), 24, 24, true, true);
+		ImageView trophyImageView = new ImageView();
+		trophyImageView.setImage(trophyImage);
+		trophyImageView.setCache(true);
+		trophyImageView.setSmooth(true);
+		
+		Button achievementBtn = new Button("Achievements", trophyImageView);
+		achievementBtn.getStyleClass().add("small");
+		achievementBtn.setOnAction((ActionEvent event) -> {
+			sceneManager.changeScene("Achievement");
+		});
+		topPane.getChildren().add(achievementBtn);
+		AnchorPane.setRightAnchor(achievementBtn, 40.0);
+		AnchorPane.setTopAnchor(achievementBtn, 10.0);
+		
+		root.setTop(topPane);
 		
 		// Center pane
 		ScrollPane centerPane = new ScrollPane();
@@ -144,10 +176,12 @@ public class MainView extends SceneView {
 		Label motivateLbl = new Label("");
 		motivateLbl.setPrefWidth(100);
 		motivateLbl.setWrapText(true);
+		motivateLbl.textProperty().bind(motivateText);
+		motivateLbl.setPadding(new Insets(20, 0, 0, 0));
 		
 		Button motivateBtn = new Button("Motivate");
 		motivateBtn.setOnAction((ActionEvent event) -> {
-			motivateLbl.setText(motivationController.getRandomMessage());
+			motivateText.set(motivationController.getRandomMessage());
 		});
 		
 		rightPane.getChildren().add(motivateBtn);
@@ -160,21 +194,13 @@ public class MainView extends SceneView {
 		HBox bottomPane = new HBox();
 		
 		Button newTaskBtn = new Button("New Task");
-		newTaskBtn.setPrefWidth(300);
+		newTaskBtn.setPrefWidth(600);
 		newTaskBtn.setMinHeight(40);
 		newTaskBtn.setOnAction((ActionEvent event) -> {
 			((TaskView)sceneManager.getView("Task")).setTask(null);
 			sceneManager.changeScene("Task");
 		});
 		bottomPane.getChildren().add(newTaskBtn);
-		
-		Button achievementBtn = new Button("Achievements");
-		achievementBtn.setPrefWidth(300);
-		achievementBtn.setMinHeight(40);
-		achievementBtn.setOnAction((ActionEvent event) -> {
-			sceneManager.changeScene("Achievement");
-		});
-		bottomPane.getChildren().add(achievementBtn);
 		
 		root.setBottom(bottomPane);
 		BorderPane.setMargin(bottomPane, new Insets(0, 20, 20, 20));
