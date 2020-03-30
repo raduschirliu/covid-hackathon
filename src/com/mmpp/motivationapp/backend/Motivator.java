@@ -5,8 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 /**
  * This class handles the user Motivator that is displayed to the right of the task window
@@ -180,20 +184,16 @@ public class Motivator {
 	 * @param filename the name of the text file
 	 */
 	public void importMessagesFromFile(String filename) {
-		File file = new File(getClass().getClassLoader().getResource(filename).getFile());
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(file));
+			InputStream stream = getClass().getResourceAsStream(filename);
+			BufferedReader in = new BufferedReader(new InputStreamReader(stream));
 			while(in.ready()) {
 				String s = in.readLine();
 				addMessage(s);
 			}
 			in.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("Could not find the file with the specified filename");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.err.println("I/O error");
-			e.printStackTrace();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	

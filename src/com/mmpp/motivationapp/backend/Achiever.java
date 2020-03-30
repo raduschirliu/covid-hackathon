@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class Achiever {
 
@@ -62,22 +66,16 @@ public class Achiever {
 	 * @param filename the name of the file
 	 */
 	public void importAchievementsFromFile(String filename, ArrayList<Achievement> a) {
-		File file = new File(getClass().getResource(filename).getFile());
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(file));
+			InputStream stream = getClass().getResourceAsStream(filename);
+			BufferedReader in = new BufferedReader(new InputStreamReader(stream));
 			while(in.ready()) {
 				String s = in.readLine();
 				addAchievement(s, a);
 			}
 			in.close();
-		}
-		catch(FileNotFoundException e) {
-			System.err.println("Could not find the file with the specified filename");
-			e.printStackTrace();
-		}
-		catch(IOException e) {
-			System.err.println("I/O error");
-			e.printStackTrace();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	

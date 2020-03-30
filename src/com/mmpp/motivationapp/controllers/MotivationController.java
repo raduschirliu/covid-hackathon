@@ -15,7 +15,7 @@ public class MotivationController {
 
 	public MotivationController() {
 		motivator = new Motivator();
-		motivator.importMessagesFromFile("MessageBank.txt");
+		motivator.importMessagesFromFile("/MessageBank.txt");
 	}
 	
 	public String getRandomMessage() {

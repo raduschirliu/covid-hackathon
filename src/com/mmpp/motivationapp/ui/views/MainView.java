@@ -142,6 +142,7 @@ public class MainView extends SceneView {
 		Button achievementBtn = new Button("Achievements", trophyImageView);
 		achievementBtn.getStyleClass().add("small");
 		achievementBtn.setOnAction((ActionEvent event) -> {
+			getAchieverController().update();
 			sceneManager.changeScene("Achievement");
 		});
 		topPane.getChildren().add(achievementBtn);
