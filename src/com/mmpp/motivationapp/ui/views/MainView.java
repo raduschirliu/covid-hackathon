@@ -2,11 +2,14 @@ package com.mmpp.motivationapp.ui.views;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import com.mmpp.motivationapp.backend.Task;
 import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
 import com.mmpp.motivationapp.ui.SceneView;
+
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -15,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -100,6 +105,13 @@ public class MainView extends SceneView {
 	public Scene getScene() {
 		BorderPane root = new BorderPane();
 		root.getStyleClass().add("body");
+		
+		//Logo insertion
+		ImageView logoV = new ImageView();
+		Image logo = new Image("file:res/logo.png", 350, 131, true, true);
+		BorderPane.setMargin(logoV, (new Insets(25, 0, 0, 20)));
+		logoV.setImage(logo);
+		root.setTop(logoV);
 		
 		// Center pane
 		ScrollPane centerPane = new ScrollPane();
