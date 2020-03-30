@@ -123,6 +123,7 @@ public class Achiever {
 		int cost = Integer.parseInt(split[1]);
 		Achievement achievement = new Achievement(split[0], cost, split[2], split[3]);
 		a.add(achievement);
+		return;
 	}
 	
 	public ArrayList<Achievement> getAllAchievements() {
