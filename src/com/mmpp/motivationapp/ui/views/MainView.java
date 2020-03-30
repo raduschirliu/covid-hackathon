@@ -110,7 +110,7 @@ public class MainView extends SceneView {
 		
 		//Logo insertion
 		ImageView logoV = new ImageView();
-		Image logo = new Image("file:res/logo.png", 350, 131, true, true);
+		Image logo = new Image(getClass().getResourceAsStream("/logo.png"), 350, 131, true, true);
 		BorderPane.setMargin(logoV, (new Insets(25, 0, 0, 20)));
 		logoV.setImage(logo);
 		root.setTop(logoV);
