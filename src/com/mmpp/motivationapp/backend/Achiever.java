@@ -58,7 +58,7 @@ public class Achiever {
 	 * @param filename the name of the file
 	 */
 	public void importAchievementsFromFile(String filename, ArrayList<Achievement> a) {
-		File file = new File(filename);
+		File file = new File(getClass().getResource(filename).getFile());
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(file));
 			while(in.ready()) {

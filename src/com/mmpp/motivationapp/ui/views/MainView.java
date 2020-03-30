@@ -110,7 +110,7 @@ public class MainView extends SceneView {
 		
 		//Logo insertion
 		ImageView logoV = new ImageView();
-		Image logo = new Image("file:res/logo.png", 350, 131, true, true);
+		Image logo = new Image(getClass().getResourceAsStream("/logo.png"), 350, 131, true, true);
 		BorderPane.setMargin(logoV, (new Insets(25, 0, 0, 20)));
 		logoV.setImage(logo);
 		root.setTop(logoV);
@@ -181,7 +181,7 @@ public class MainView extends SceneView {
 		
 		Scene scene = new Scene(root, 640, 480);
 		scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
-		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 		return scene;
 	}
 

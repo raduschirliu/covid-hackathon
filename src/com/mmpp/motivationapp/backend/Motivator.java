@@ -180,7 +180,7 @@ public class Motivator {
 	 * @param filename the name of the text file
 	 */
 	public void importMessagesFromFile(String filename) {
-		File file = new File(filename);
+		File file = new File(getClass().getClassLoader().getResource(filename).getFile());
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(file));
 			while(in.ready()) {
