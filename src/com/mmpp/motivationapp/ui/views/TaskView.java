@@ -102,7 +102,7 @@ public class TaskView extends SceneView {
 		
 		Scene scene = new Scene(root, 640, 480);
 		scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
-		scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 		return scene;
 	}
 	

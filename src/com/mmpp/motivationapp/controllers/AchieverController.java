@@ -14,7 +14,7 @@ public class AchieverController implements BackendConstants{
 
 	public AchieverController() {
 		achiever = new Achiever();
-		achiever.importAchievementsFromFile("AchievementBank.txt", achiever.getAllAchievements());
+		achiever.importAchievementsFromFile("/AchievementBank.txt", achiever.getAllAchievements());
 		
 		try {
 			File achievementsFile = new File(MY_ACHIEVEMENTS);

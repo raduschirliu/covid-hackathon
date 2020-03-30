@@ -39,7 +39,7 @@ public class MotivationApp extends Application {
 
 		sceneManager.changeScene("Main");
 		
-		stage.getIcons().add(new Image("file:res/icon.png"));
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
 		stage.setTitle("MotivateMate");
 		stage.setResizable(false);
 		stage.centerOnScreen();
