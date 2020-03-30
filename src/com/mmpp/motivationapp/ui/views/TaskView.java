@@ -118,7 +118,7 @@ public class TaskView extends SceneView {
 		task.setName(name);
 		task.setPriority(priority);
 		System.out.println("Saved task: " + task);
-		//Reorder the tasks now that we have possibly changed the priority
+		// Reorder the tasks now that we have possibly changed the priority
 		taskManager.getTodaysList().sortTasks();
 		sceneManager.changeScene("Main");
 	}
