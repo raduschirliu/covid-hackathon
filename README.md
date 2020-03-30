@@ -10,7 +10,7 @@ MotivateMate allows you to create a simple to-do list, with a unique twist. Moti
 ## How we made it
 MotivateMate was built using Java. We started with a simple idea and built it up using diagrams and brainstorming boards. Many hours of coding later, the app took shape, and we added some finishing details to wrap it up.
 
-## Challenges I ran into
+## Challenges we ran into
 Our team is a group of friends with a passion for coding. Normally, when participating in hackathons, we are able to work together in person. Of course, for this hackathon, we were not able to do that. This brought on the challenge of being able to communicate effectively over the internet. Luckily, we were able to use some awesome tools available on the internet such as Discord, Google Docs, and Trello to coordinate our efforts. 
 
 Another challenge we faced was trying to get all of our development environments to work properly. Our teammate was unable to get his Javafx to install properly, resulting in him losing a lot of time to code. Fortunately, we were eventually able to fix the issue as a team and get back to work.
