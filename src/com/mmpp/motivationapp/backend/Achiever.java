@@ -36,6 +36,10 @@ public class Achiever {
 	 * Checks to see if user has earned any achievements
 	 */
 	public void update() {
+		if(myAchievements.size() == allAchievements.size()) {
+			return;
+		}
+		
 		int i = 0;
 		while(i < allAchievements.size() && allAchievements.get(i).isHasEarned()) {
 			i++;
