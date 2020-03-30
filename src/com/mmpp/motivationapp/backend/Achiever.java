@@ -84,10 +84,21 @@ public class Achiever {
 	public void loadMyAchievements(File f) {
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(f));
+			if(!in.ready()) {
+				in.close();
+				return;
+			}
+			
+			//The first int in the file represents the lifetime completed tasks, 
+			//we need to get this value first
+			lifetimeCompleted = in.read();
+			
+			//Now that we have lifetime completed, we can load all of our achievements
 			while(in.ready()) {
 				String s = in.readLine();
 				addAchievement(s, getMyAchievements());
 			}
+			
 			in.close();
 		}
 		catch(FileNotFoundException e) {

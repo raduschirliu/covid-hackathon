@@ -18,6 +18,7 @@ public class AchieverController implements BackendConstants{
 		
 		try {
 			File achievementsFile = new File(MY_ACHIEVEMENTS);
+			System.out.println("We got here");
 			if (!achievementsFile.exists()) {
 				achievementsFile.createNewFile();
 			} 
@@ -53,8 +54,13 @@ public class AchieverController implements BackendConstants{
 		}
 		try {
 			FileWriter writer = new FileWriter(MY_ACHIEVEMENTS, false);
-			//TODO somehow save the total completed lifetime achievements
+			//First thing we must do is save the lifetime completed tasks count
+			writer.write(achiever.getLifetimeCompleted() + "\n");
 			
+			//Now we can write all of the user's achievements
+			for(int i = 0; i<achiever.getMyAchievements().size(); i++) {
+				writer.write(achiever.getMyAchievements().get(i).toString());
+			}
 			
 			writer.close();
 		}
