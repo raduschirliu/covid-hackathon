@@ -4,10 +4,12 @@ import com.mmpp.motivationapp.controllers.AchieverController;
 import com.mmpp.motivationapp.controllers.MotivationController;
 import com.mmpp.motivationapp.controllers.TaskListManager;
 import com.mmpp.motivationapp.ui.SceneManager;
+import com.mmpp.motivationapp.ui.views.AchievementView;
 import com.mmpp.motivationapp.ui.views.MainView;
 import com.mmpp.motivationapp.ui.views.TaskView;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 /**
  * The main front-end of the COVID Hackathon Task List and Motivation Application
@@ -28,15 +30,17 @@ public class MotivationApp extends Application {
 	public void start(Stage stage) throws Exception {
 		motivationController = new MotivationController();
 		taskManager = new TaskListManager(motivationController);
-		achieverController = new AchieverController();
+		//achieverController = new AchieverController();
 		
 		sceneManager = new SceneManager(stage);
 		sceneManager.registerScene(new MainView(sceneManager, taskManager, motivationController, achieverController));
 		sceneManager.registerScene(new TaskView(sceneManager, taskManager));
+		sceneManager.registerScene(new AchievementView(sceneManager, achieverController));
 
 		sceneManager.changeScene("Main");
 		
-		stage.setTitle("COVID Hackathon Motivator");
+		stage.getIcons().add(new Image("file:res/icon.png"));
+		stage.setTitle("MotivateMate");
 		stage.setResizable(false);
 		stage.centerOnScreen();
 		stage.show();
@@ -45,6 +49,6 @@ public class MotivationApp extends Application {
 	@Override
 	public void stop() {
 		taskManager.saveListsToFile();
-		achieverController.saveAchievementsToFile();
+		//achieverController.saveAchievementsToFile();
 	}
 }

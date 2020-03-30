@@ -16,10 +16,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 
@@ -106,6 +108,13 @@ public class MainView extends SceneView {
 		BorderPane root = new BorderPane();
 		root.getStyleClass().add("body");
 		
+		//Logo insertion
+		ImageView logoV = new ImageView();
+		Image logo = new Image("file:res/logo.png", 350, 131, true, true);
+		BorderPane.setMargin(logoV, (new Insets(25, 0, 0, 20)));
+		logoV.setImage(logo);
+		root.setTop(logoV);
+		
 		// Center pane
 		ScrollPane centerPane = new ScrollPane();
 		centerPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -148,16 +157,24 @@ public class MainView extends SceneView {
 		BorderPane.setMargin(rightPane, new Insets(20, 20, 0, 0));
 		
 		// Bottom pane
-		StackPane bottomPane = new StackPane();
+		HBox bottomPane = new HBox();
 		
 		Button newTaskBtn = new Button("New Task");
-		newTaskBtn.setPrefWidth(640);
+		newTaskBtn.setPrefWidth(300);
 		newTaskBtn.setMinHeight(40);
 		newTaskBtn.setOnAction((ActionEvent event) -> {
 			((TaskView)sceneManager.getView("Task")).setTask(null);
 			sceneManager.changeScene("Task");
 		});
 		bottomPane.getChildren().add(newTaskBtn);
+		
+		Button achievementBtn = new Button("Achievements");
+		achievementBtn.setPrefWidth(300);
+		achievementBtn.setMinHeight(40);
+		achievementBtn.setOnAction((ActionEvent event) -> {
+			sceneManager.changeScene("Achievement");
+		});
+		bottomPane.getChildren().add(achievementBtn);
 		
 		root.setBottom(bottomPane);
 		BorderPane.setMargin(bottomPane, new Insets(0, 20, 20, 20));
