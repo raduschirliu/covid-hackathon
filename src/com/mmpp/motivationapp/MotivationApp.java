@@ -28,7 +28,7 @@ public class MotivationApp extends Application {
 	public void start(Stage stage) throws Exception {
 		motivationController = new MotivationController();
 		taskManager = new TaskListManager(motivationController);
-		achieverController = new AchieverController();
+		//achieverController = new AchieverController();
 		
 		sceneManager = new SceneManager(stage);
 		sceneManager.registerScene(new MainView(sceneManager, taskManager, motivationController));
@@ -45,6 +45,6 @@ public class MotivationApp extends Application {
 	@Override
 	public void stop() {
 		taskManager.saveListsToFile();
-		achieverController.saveAchievementsToFile();
+		//achieverController.saveAchievementsToFile();
 	}
 }
