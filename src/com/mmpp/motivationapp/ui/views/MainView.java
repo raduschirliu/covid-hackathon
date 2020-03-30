@@ -77,6 +77,8 @@ public class MainView extends SceneView {
 				getAchieverController().getAchiever().setLifetimeCompleted(getAchieverController().getAchiever().getLifetimeCompleted() - 1);
 				root.getStyleClass().remove("completed");
 			}
+			
+			getAchieverController().update();
 		});
 		root.getChildren().add(check);
 		AnchorPane.setLeftAnchor(check, 0.0);
