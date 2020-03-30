@@ -18,7 +18,6 @@ public class AchieverController implements BackendConstants{
 		
 		try {
 			File achievementsFile = new File(MY_ACHIEVEMENTS);
-			System.out.println("We got here");
 			if (!achievementsFile.exists()) {
 				achievementsFile.createNewFile();
 			} 

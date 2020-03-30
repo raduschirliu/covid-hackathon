@@ -28,6 +28,11 @@ public class Achievement {
 	 * The status of whether or not a user has earned this achievement
 	 */
 	private boolean hasEarned;
+	
+	/**
+	 * Color of the medal icon
+	 */
+	private String colour;
 
 	/**
 	 * The constructor for class achievement
@@ -35,10 +40,11 @@ public class Achievement {
 	 * @param name the name for the achievement
 	 * @param cost the number of tasks to earn this achievement
 	 */
-	public Achievement(String name, int cost, String description) {
+	public Achievement(String name, int cost, String description, String colour) {
 		this.name = name;
 		this.cost = cost;
 		this.setDescription(description);
+		this.setColour(colour);
 		this.setHasEarned(false);
 	}
 
@@ -108,9 +114,18 @@ public class Achievement {
 	public String toString() {
 		String s = "";
 		s += name;
-		s += "\n" + cost;
-		s += "\n" + description;
+		s += ";" + cost;
+		s += ";" + description;
+		s += ";" + colour;
 		return s;
+	}
+
+	public String getColour() {
+		return colour;
+	}
+
+	public void setColour(String colour) {
+		this.colour = colour;
 	}
 
 }
