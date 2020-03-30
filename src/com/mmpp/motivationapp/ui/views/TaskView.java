@@ -87,6 +87,9 @@ public class TaskView extends SceneView {
 		saveBtn.setPrefSize(640, 40);
 		saveBtn.setOnAction((ActionEvent event) -> {
 			name = nameField.getText();
+			if(name.isEmpty()) {
+				System.err.println("Blank name error");
+			}
 			priority = (int)prioritySlider.getValue();
 			
 			if (task == null) {
